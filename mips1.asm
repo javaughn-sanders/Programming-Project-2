@@ -34,3 +34,7 @@ main:
 	la $a0, UserInput 	#load address UserInput from memory and store it into arguement register 0
 	li $v0, 4 		#loads the value 4 into register $v0 which is the op code for print string
 	syscall
+	
+exit:
+    li $v0, 10                                  # load code to exit the program
+    syscall
