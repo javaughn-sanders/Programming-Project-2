@@ -1,10 +1,9 @@
 .data
-UserInput:
     userInput:    .space 64
     emptyInput:   .asciiz "Input is empty."
     invalidInput: .asciiz "Invalid base-36 number."
     longInput:    .asciiz "Input is too long."
-
+   filtered_input:     .space 4                        # allocate 4 bytes for filtered out string that doesn't have white spaces
 .text
 
 
