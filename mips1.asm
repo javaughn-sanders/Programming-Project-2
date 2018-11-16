@@ -1,6 +1,9 @@
 .data
 UserInput:
-    .space 64
+    userInput:    .space 64
+    emptyInput:   .asciiz "Input is empty."
+    invalidInput: .asciiz "Invalid base-33 number."
+    longInput:    .asciiz "Input is too long."
 .text
 main:
  	li      $v0, 8 		#op code for reading strings
