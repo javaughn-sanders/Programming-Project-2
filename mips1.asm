@@ -4,6 +4,7 @@ UserInput:
     emptyInput:   .asciiz "Input is empty."
     invalidInput: .asciiz "Invalid base-36 number."
     longInput:    .asciiz "Input is too long."
+
 .text
 
 
@@ -31,9 +32,10 @@ main:
 	li      $a1, 64  	# how much memory to give user to input string
 	syscall
     
-	la $a0, UserInput 	#load address UserInput from memory and store it into arguement register 0
-	li $v0, 4 		#loads the value 4 into register $v0 which is the op code for print string
-	syscall
+# Use a loop to extract string and exclude white spaces
+    li $s2, 0                                  						 
+    li $t1, 10                                 
+    li $t2, 32
 	
 exit:
     li $v0, 10                                  # load code to exit the program
