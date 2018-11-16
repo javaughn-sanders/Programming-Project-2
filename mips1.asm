@@ -5,9 +5,17 @@ UserInput:
     invalidInput: .asciiz "Invalid base-33 number."
     longInput:    .asciiz "Input is too long."
 .text
+
+
+err_empty_input:
+  la $a0, emptyInput
+  li $v0, 4
+  syscall
+  j exit
+  
 main:
  	li      $v0, 8 		#op code for reading strings
-	la      $a0, UserInput  #load UserInput from emeory and store in argument reqister 0
+	la      $a0, userInput  #load UserInput from emeory and store in argument reqister 0
 	li      $a1, 64  	# how much memory to give user to input string
 	syscall
     
