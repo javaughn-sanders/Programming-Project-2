@@ -7,8 +7,20 @@ UserInput:
 .text
 
 
-err_empty_input:
+error_emp_input:
   la $a0, emptyInput
+  li $v0, 4
+  syscall
+  j exit
+  
+error_inv_input:
+  la $a0, invalidInput
+  li $v0, 4
+  syscall
+  j exit
+  
+error_long_input:
+  la $a0, longInput
   li $v0, 4
   syscall
   j exit
