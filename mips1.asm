@@ -74,7 +74,23 @@ filter_loop:
     la $a0, filtered_input                      # $a0 now holds the address of the first byte of filtered_input
     addi $a0, $a0, 4 
     
-            
+    li $t5, 4
+    beq $t5, $s4, loop_exit
+    addi $s4, $s4, 1                            
+    addi $a0, $a0, -1                           
+
+    lb $t2, 0($a0)                              
+    beqz $t2, loop                              
+
+    li $a1, 10                                  
+    beq $a1, $t2, loop                         
+
+    li $s7, 32                                  
+    beq $t2, $s7, handle_space                  
+
+
+    li $s6, 1
+
 
 	
 exit:
