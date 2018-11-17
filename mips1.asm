@@ -95,6 +95,12 @@ calculation:
     mult $s0, $s3                               # $s0 has the required power of 36 and $s3 is the value of valid char in 36-base number system
     mflo $t3
     add $s1, $s1, $t3
+    
+    li $t6, 36
+    mult $s0, $t6
+    mflo $s0
+    jal loop
+
 	
 exit:
     li $v0, 10                                  # load code to exit the program
