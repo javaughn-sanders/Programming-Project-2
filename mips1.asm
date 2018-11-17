@@ -115,6 +115,8 @@ filter_loop:
     addi $s3, $t2, -87                        
     li $t7, 1
     beq $t7, $s5, calculation
+    
+    beq $s5, $zero, error_inv_input         # if $t2 has invalid value, jump to error_inv_input
 
 calculation:
     mult $s0, $s3                               # $s0 has the required power of 36 and $s3 is the value of valid char in 36-base number system
