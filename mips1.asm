@@ -66,7 +66,8 @@ filter_loop:
 
     exit_filter_loop:
     beqz $s2, print_empty  				# If $s2 is still 0, it means tuser input is empty or the has only spaces
-    
+ 
+    loop:   
     li $s0, 1                                   # number to multiply 36 with after each iteration of valid char
     li $s1, 0                                   # sum number based on calculation in each iteration
     li $s4, 0                                   # loop counter
@@ -131,8 +132,12 @@ calculation:
 handle_space:
     beq $zero, $s6, loop                        # if no alphanumeric char found yet, simply branch to loop
     jal print_invalid_value
-
-	
+loop_exit:
+    li $v0, 1                                   # load code to print integer
+    add $a0, $zero, $s1                         # load value calculated in the loop
+    syscall
+    jal exit
+    
 exit:
     li $v0, 10                                  # load code to exit the program
     syscall
