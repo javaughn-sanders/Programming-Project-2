@@ -111,6 +111,10 @@ filter_loop:
     li $t0, 96
     slt $t1, $t0, $t2				#if $t2 has value within range 97 and 122, $s5 will have 1, else 0
     slti $t4, $t2, 123
+    and $s5, $t1, $t4                          
+    addi $s3, $t2, -87                        
+    li $t7, 1
+    beq $t7, $s5, calculation
 
 calculation:
     mult $s0, $s3                               # $s0 has the required power of 36 and $s3 is the value of valid char in 36-base number system
