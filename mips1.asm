@@ -91,7 +91,10 @@ filter_loop:
 
     li $s6, 1
 
-
+calculation:
+    mult $s0, $s3                               # $s0 has the required power of 36 and $s3 is the value of valid char in 36-base number system
+    mflo $t3
+    add $s1, $s1, $t3
 	
 exit:
     li $v0, 10                                  # load code to exit the program
