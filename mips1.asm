@@ -43,6 +43,13 @@ filter_loop:
     beqz $t0, exit_filter_loop                  # exit loop when NUL is found
 
     bne $s2, $zero, error_long_input
+    
+    li $s2, 1                                   
+    la $a1, filtered_input                      # load address of filtered_input
+    sb $t0, 0($a1)
+    lb $t0, 1($a0)
+    sb $t0, 1($a1)
+
 	
 exit:
     li $v0, 10                                  # load code to exit the program
