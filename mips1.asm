@@ -53,7 +53,15 @@ filter_loop:
     sb $t0, 2($a1)
     lb $t0, 3($a0)
     sb $t0, 3($a1)
-    addi $a0, $a0, 3                        
+    addi $a0, $a0, 3           
+    
+    skip:
+    addi $a0, $a0, 1
+    jal filter_loop
+
+    exit_filter_loop:
+    # If $s2 is still 0, it means that either the user input is empty or the has only spaces
+    beqz $s2, print_empty             
 
 	
 exit:
