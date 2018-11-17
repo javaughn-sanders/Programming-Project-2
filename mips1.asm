@@ -24,7 +24,12 @@ error_long_input:
   li $v0, 4
   syscall
   j exit
-  
+ 
+    print_empty:
+    la $a0, input_is_empty                      # load address of the string to print
+    li $v0, 4                                   # load code to print string
+    syscall
+    jal exit 
 main:
  	li      $v0, 8 		#op code for reading strings
 	la      $a0, userInput  #load UserInput from emeory and store in argument reqister 0
@@ -60,8 +65,8 @@ filter_loop:
     jal filter_loop
 
     exit_filter_loop:
-    # If $s2 is still 0, it means that either the user input is empty or the has only spaces
-    beqz $s2, print_empty             
+    beqz $s2, print_empty  				# If $s2 is still 0, it means tuser input is empty or the has only spaces
+    
 
 	
 exit:
