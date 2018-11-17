@@ -127,6 +127,7 @@ calculation:
     mult $s0, $t6
     mflo $s0
     jal loop
+    
 handle_space:
     beq $zero, $s6, loop                        # if no alphanumeric char found yet, simply branch to loop
     jal print_invalid_value
