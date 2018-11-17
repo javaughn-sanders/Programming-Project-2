@@ -6,6 +6,17 @@
    filtered_input:     .space 4                        # allocate 4 bytes for filtered out string that doesn't have white spaces
 .text
 
+main:
+ 	
+	la      $a0, userInput  #load UserInput from emeory and store in argument reqister 0
+	li      $v0, 8 		#op code for reading strings
+
+	syscall
+    
+# Use a loop to extract string and exclude white spaces
+    li $s2, 0                                  						 
+    li $t1, 10                                 
+    li $t2, 32
 
 error_emp_input:
   la $a0, emptyInput
@@ -30,16 +41,7 @@ print_empty:
     li $v0, 4                                   # load code to print string
     syscall
     jal exit 
-main:
- 	li      $v0, 8 		#op code for reading strings
-	la      $a0, userInput  #load UserInput from emeory and store in argument reqister 0
-	li      $a1, 64  	# how much memory to give user to input string
-	syscall
-    
-# Use a loop to extract string and exclude white spaces
-    li $s2, 0                                  						 
-    li $t1, 10                                 
-    li $t2, 32
+
 	
 filter_loop:
     lb $t0, 0($a0)                              # load byte from $a0, $a0 currently points to first byte of user input and is updated in the loop
@@ -131,7 +133,7 @@ calculation:
     
 handle_space:
     beq $zero, $s6, loop                        # if no alphanumeric char found yet, simply branch to loop
-    jal print_invalid_value
+    jal error_inv_input
 loop_exit:
     li $v0, 1                                   # load code to print integer
     add $a0, $zero, $s1                         # load value calculated in the loop
