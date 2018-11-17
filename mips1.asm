@@ -90,7 +90,14 @@ filter_loop:
 
 
     li $s6, 1
-
+    
+    # Now that $t2 does not have NUL or new line char, check if the char is valid in 36-base system
+    li $t0, 47
+    slt $t1, $t0, $t2
+    slti $t4, $t2, 58
+    and $s5, $t1, $t4                           # if $t2 has value within range 48 and 57, $s5 will have 1, else 0
+    addi $s3, $t2, -48                          
+   
 calculation:
     mult $s0, $s3                               # $s0 has the required power of 36 and $s3 is the value of valid char in 36-base number system
     mflo $t3
