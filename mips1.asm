@@ -25,8 +25,8 @@ error_long_input:
   syscall
   j exit
  
-    print_empty:
-    la $a0, input_is_empty                      # load address of the string to print
+print_empty:
+    la $a0, emptyInput                      # load address of the string to print
     li $v0, 4                                   # load code to print string
     syscall
     jal exit 
