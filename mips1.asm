@@ -49,6 +49,11 @@ filter_loop:
     sb $t0, 0($a1)
     lb $t0, 1($a0)
     sb $t0, 1($a1)
+    lb $t0, 2($a0)
+    sb $t0, 2($a1)
+    lb $t0, 3($a0)
+    sb $t0, 3($a1)
+    addi $a0, $a0, 3                        
 
 	
 exit:
