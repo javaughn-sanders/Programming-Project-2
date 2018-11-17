@@ -67,6 +67,14 @@ filter_loop:
     exit_filter_loop:
     beqz $s2, print_empty  				# If $s2 is still 0, it means tuser input is empty or the has only spaces
     
+    li $s0, 1                                   # number to multiply 36 with after each iteration of valid char
+    li $s1, 0                                   # sum number based on calculation in each iteration
+    li $s4, 0                                   # loop counter
+    li $s6, 0                                   # will be updated to 1 when a non-space, non-NUL or non-new-line-char is found. If this is already 1 and space is found, jump to print_invalid_value
+    la $a0, filtered_input                      # $a0 now holds the address of the first byte of filtered_input
+    addi $a0, $a0, 4 
+    
+            
 
 	
 exit:
