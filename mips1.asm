@@ -36,6 +36,14 @@ main:
     li $t1, 10                                 
     li $t2, 32
 	
+filter_loop:
+    lb $t0, 0($a0)                              # load byte from $a0, $a0 currently points to first byte of user input and is updated in the loop
+    beq $t0, $t1, exit_filter_loop              # exit when new line char found
+    beq $t0, $t2, skip                          
+    beqz $t0, exit_filter_loop                  # exit loop when NUL is found
+
+    bne $s2, $zero, error_long_input
+	
 exit:
     li $v0, 10                                  # load code to exit the program
     syscall
